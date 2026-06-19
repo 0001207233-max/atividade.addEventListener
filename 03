@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 3</title>
+</head>
+
+<body>
+
+    <button id="btnAtivar">Ativar Contador</button>
+    <button id="btnDesativar">Desativar Contador</button>
+
+    <br><br>
+
+
+    <button id="btnContador">Clique aqui para contar!</button>
+    <h2>Total de cliques: <span id="placar">0</span></h2>
+    <p id="mensagemStatus">Status: Contador desligado</p>
+
+    <script>
+       
+        const btnAtivar = document.getElementById('btnAtivar');
+        const btnDesativar = document.getElementById('btnDesativar');
+        const btnContador = document.getElementById('btnContador');
+        const placar = document.getElementById('placar');
+        const mensagemStatus = document.getElementById('mensagemStatus');
+
+       
+        let total = 0;
+
+        
+        function incrementarContador() {
+            total = total + 1;
+            placar.textContent = total;
+        }
+
+       
+        btnAtivar.addEventListener('click', function () {
+            
+            btnContador.removeEventListener('click', incrementarContador);
+
+            btnContador.addEventListener('click', incrementarContador);
+            mensagemStatus.textContent = 'Status: Contador ATIVO! Pode clicar.';
+        });
+
+       
+        btnDesativar.addEventListener('click', function () {
+            btnContador.removeEventListener('click', incrementarContador);
+            mensagemStatus.textContent = 'Status: Contador desativado.';
+        });
+
+    </script>
+
+</body>
+
+</html>
