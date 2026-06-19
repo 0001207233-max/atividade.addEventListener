@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 7</title>
+</head>
+
+<body>
+
+
+    <button id="btnLigar">Ligar Alerta</button>
+    <button id="btnDesligar">Desligar Alerta</button>
+
+    <br><br>
+
+
+    <img id="minhaImagem" src="https://picsum.photos" alt="Imagem Interativa"
+        style="cursor: pointer; border: 3px solid #ccc; border-radius: 4px;">
+
+    <p id="mensagemStatus">Status: Alerta desligado</p>
+
+
+
+    <script>
+
+       
+        const btnLigar = document.getElementById('btnLigar');
+        const btnDesligar = document.getElementById('btnDesligar');
+        const imagem = document.getElementById('minhaImagem');
+        const mensagemStatus = document.getElementById('mensagemStatus');
+
+      
+        function dispararAlerta() {
+            alert('Você clicou na imagem com o alerta ativo!');
+        }
+
+        
+        btnLigar.addEventListener('click', function () {
+           
+            imagem.removeEventListener('click', dispararAlerta);
+
+            imagem.addEventListener('click', dispararAlerta);
+            mensagemStatus.textContent = 'Status: Alerta LIGADO! Clique na imagem.';
+        });
+
+        
+        btnDesligar.addEventListener('click', function () {
+            imagem.removeEventListener('click', dispararAlerta);
+            mensagemStatus.textContent = 'Status: Alerta desligado.';
+        });
+
+
+    </script>
+
+</body>
+
+</html>
