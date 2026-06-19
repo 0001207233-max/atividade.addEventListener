@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 2</title>
+</head>
+
+<body>
+
+    <button id="btnIniciar">Iniciar Clique</button>
+    <button id="btnParar">Parar Clique</button>
+
+
+    <div id="meuQuadrado"
+        style="width: 150px; height: 150px; background-color: lightgray; margin-top: 20px; transition: background-color 0.3s;">
+    </div>
+
+    <p id="statusPainel">Status: Evento desligado</p>
+
+    <script>
+       
+        const btnIniciar = document.getElementById('btnIniciar');
+        const btnParar = document.getElementById('btnParar');
+        const quadrado = document.getElementById('meuQuadrado');
+        const statusPainel = document.getElementById('statusPainel');
+
+       
+        function mudarParaVerde() {
+            quadrado.style.backgroundColor = 'green';
+        }
+
+       
+        btnIniciar.addEventListener('click', function () {
+            quadrado.addEventListener('click', mudarParaVerde);
+            statusPainel.textContent = 'Status: Evento ATIVO! Clique no quadrado.';
+        });
+
+        
+        btnParar.addEventListener('click', function () {
+            quadrado.removeEventListener('click', mudarParaVerde);
+            statusPainel.textContent = 'Status: Evento desativado.';
+
+           
+            quadrado.style.backgroundColor = 'lightgray';
+        });
+
+    </script>
+
+</body>
+
+</html>
