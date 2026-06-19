@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 9</title>
+</head>
+
+<body>
+
+    <button id="btnAtivar">Ativar Evento</button>
+    <button id="btnRemover">Remover Evento</button>
+
+
+    <div id="areaEmoji"
+        style="font-size: 80px; cursor: pointer; user-select: none; margin-top: 20px; width: fit-content;">
+        😐
+    </div>
+
+    <p id="mensagemStatus">Status: Evento desativado</p>
+
+
+    <script>
+        
+        const btnAtivar = document.getElementById('btnAtivar');
+        const btnRemover = document.getElementById('btnRemover');
+        const areaEmoji = document.getElementById('areaEmoji');
+        const mensagemStatus = document.getElementById('mensagemStatus');
+
+      
+        function alternarEmoji() {
+           
+            if (areaEmoji.textContent.trim() === '😐') {
+                areaEmoji.textContent = '🥳';
+            } else {
+                areaEmoji.textContent = '😐';
+            }
+        }
+
+       
+        btnAtivar.addEventListener('click', function () {
+           
+            areaEmoji.removeEventListener('click', alternarEmoji);
+
+            areaEmoji.addEventListener('click', alternarEmoji);
+            mensagemStatus.textContent = 'Status: Evento ATIVO! Clique no emoji.';
+        });
+
+       
+        btnRemover.addEventListener('click', function () {
+            areaEmoji.removeEventListener('click', alternarEmoji);
+            mensagemStatus.textContent = 'Status: Evento removido. O emoji congelou.';
+
+            
+            areaEmoji.textContent = '😐';
+        });
+
+
+    </script>
+
+</body>
+
+</html>
