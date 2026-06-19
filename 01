@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 1</title>
+</head>
+
+<body>
+
+    <button id="btnAtivar">Ativar</button>
+    <button id="btnDesativar">Desativar</button>
+
+    <p id="meuParagrafo">Clique aqui para ver a mensagem!</p>
+    <p id="mensagemStatus"></p>
+
+    <script>
+      
+        const btnAtivar = document.getElementById('btnAtivar');
+        const btnDesativar = document.getElementById('btnDesativar');
+        const paragrafo = document.getElementById('meuParagrafo');
+        const statusMsg = document.getElementById('mensagemStatus');
+
+      
+        function exibirMensagem() {
+            statusMsg.textContent = 'Você clicou no parágrafo!';
+        }
+
+      
+        btnAtivar.addEventListener('click', function () {
+           
+            paragrafo.addEventListener('click', exibirMensagem);
+            statusMsg.textContent = 'Evento ativado! Clique no parágrafo.';
+        });
+
+       
+        btnDesativar.addEventListener('click', function () {
+            paragrafo.removeEventListener('click', exibirMensagem);
+            statusMsg.textContent = 'Evento desativado.';
+
+           
+            setTimeout(() => statusMsg.textContent = '', 1500);
+        });
+
+    </script>
+
+</body>
+
+</html>
