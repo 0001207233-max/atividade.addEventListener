@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 5</title>
+</head>
+
+<body>
+
+
+
+    <button id="btnAtivar">Ativar Evento</button>
+    <button id="btnRemover">Remover Evento</button>
+
+
+    <h2 id="textoInterativo" style="cursor: pointer; margin-top: 20px; color: blue;">
+        Texto Original (Clique em Ativar primeiro)
+    </h2>
+
+    <p id="mensagemStatus">Status: Evento desligado</p>
+
+    <script>
+
+      
+        const btnAtivar = document.getElementById('btnAtivar');
+        const btnRemover = document.getElementById('btnRemover');
+        const textoInterativo = document.getElementById('textoInterativo');
+        const mensagemStatus = document.getElementById('mensagemStatus');
+
+      
+        function alterarConteúdo() {
+            if (textoInterativo.textContent === 'Texto Original (Clique em Ativar primeiro)') {
+                textoInterativo.textContent = '🔥 O texto foi alterado com sucesso!';
+            } else {
+                textoInterativo.textContent = 'Texto Original (Clique em Ativar primeiro)';
+            }
+        }
+
+      
+        btnAtivar.addEventListener('click', function () {
+           
+            textoInterativo.removeEventListener('click', alterarConteúdo);
+
+            textoInterativo.addEventListener('click', alterarConteúdo);
+            mensagemStatus.textContent = 'Status: Evento ATIVO! Clique no texto acima.';
+        });
+
+       
+        btnRemover.addEventListener('click', function () {
+            textoInterativo.removeEventListener('click', alterarConteúdo);
+            mensagemStatus.textContent = 'Status: Evento removido. O texto travou.';
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>
