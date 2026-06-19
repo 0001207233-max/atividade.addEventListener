@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 9</title>
+</head>
+
+<body>
+
+    <button id="btnAtivar">Ativar Teclado</button>
+    <button id="btnDesativar">Desativar Teclado</button>
+
+
+    <div style="margin-top: 20px;">
+        <h2>Teclas pressionadas: <span id="contadorTeclas">0</span></h2>
+        <p id="mensagemStatus">Status: Monitoramento de teclado desligado</p>
+    </div>
+
+
+    <input type="text" placeholder="Digite algo aqui para testar..."
+        style="margin-top: 10px; padding: 5px; width: 250px;">
+
+    <script>
+       
+        const btnAtivar = document.getElementById('btnAtivar');
+        const btnDesativar = document.getElementById('btnDesativar');
+        const contadorTeclas = document.getElementById('contadorTeclas');
+        const mensagemStatus = document.getElementById('mensagemStatus');
+
+       
+        let totalTeclas = 0;
+
+       
+        function contarTeclas() {
+            totalTeclas++;
+            contadorTeclas.textContent = totalTeclas;
+        }
+
+       
+        btnAtivar.addEventListener('click', function () {
+           
+            window.removeEventListener('keydown', contarTeclas);
+
+            window.addEventListener('keydown', contarTeclas);
+            mensagemStatus.textContent = 'Status: Monitoramento ATIVO! Pressione qualquer tecla.';
+        });
+
+      
+        btnDesativar.addEventListener('click', function () {
+            window.removeEventListener('keydown', contarTeclas);
+            mensagemStatus.textContent = 'Status: Monitoramento desativado.';
+        });
+
+
+    </script>
+
+</body>
+
+</html>
