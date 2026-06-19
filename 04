@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 4</title>
+</head>
+
+<body>
+
+
+    <button id="btnAtivar">Ativar Mouse</button>
+    <button id="btnDesativar">Desativar Mouse</button>
+
+
+    <div style="margin-top: 20px;">
+        <h3>Posição do Mouse:</h3>
+        <p>Eixo X: <span id="coordenadaX">0</span></p>
+        <p>Eixo Y: <span id="coordenadaY">0</span></p>
+    </div>
+
+    <p id="mensagemStatus">Status: Rastreamento desligado</p>
+
+
+    <script>
+       
+        const btnAtivar = document.getElementById('btnAtivar');
+        const btnDesativar = document.getElementById('btnDesativar');
+        const txtX = document.getElementById('coordenadaX');
+        const txtY = document.getElementById('coordenadaY');
+        const mensagemStatus = document.getElementById('mensagemStatus');
+
+       
+        function mostrarMovimento(event) {
+            
+            txtX.textContent = event.clientX;
+            txtY.textContent = event.clientY;
+        }
+
+       
+        btnAtivar.addEventListener('click', function () {
+           
+            window.removeEventListener('mousemove', mostrarMovimento);
+
+            window.addEventListener('mousemove', mostrarMovimento);
+            mensagemStatus.textContent = 'Status: Rastreamento ATIVO! Mova o mouse.';
+        });
+
+      
+        btnDesativar.addEventListener('click', function () {
+            window.removeEventListener('mousemove', mostrarMovimento);
+            mensagemStatus.textContent = 'Status: Rastreamento desativado.';
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>
