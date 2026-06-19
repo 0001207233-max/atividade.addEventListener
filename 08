@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 8</title>
+</head>
+
+<body>
+
+    <button id="btnAtivar">Ativar Evento</button>
+    <button id="btnRemover">Remover Evento</button>
+
+
+    <div id="caixaSurpresa"
+        style="width: 100px; height: 100px; background-color: purple; margin-top: 20px; transition: all 0.4s ease; cursor: pointer;">
+    </div>
+
+    <p id="mensagemStatus">Status: Evento desativado</p>
+
+    <script>
+       
+        const btnAtivar = document.getElementById('btnAtivar');
+        const btnRemover = document.getElementById('btnRemover');
+        const caixa = document.getElementById('caixaSurpresa');
+        const mensagemStatus = document.getElementById('mensagemStatus');
+
+        
+        function aumentarCaixa() {
+            caixa.style.width = '200px';
+            caixa.style.height = '200px';
+            caixa.style.backgroundColor = 'darkmagenta'; 
+        }
+
+       
+        btnAtivar.addEventListener('click', function () {
+           
+            caixa.removeEventListener('click', aumentarCaixa);
+
+            caixa.addEventListener('click', aumentarCaixa);
+            mensagemStatus.textContent = 'Status: Evento ATIVO! Clique na caixa.';
+        });
+
+       
+        btnRemover.addEventListener('click', function () {
+            caixa.removeEventListener('click', aumentarCaixa);
+            mensagemStatus.textContent = 'Status: Evento removido.';
+
+           
+            caixa.style.width = '100px';
+            caixa.style.height = '100px';
+            caixa.style.backgroundColor = 'purple';
+        });
+
+
+    </script>
+
+</body>
+
+</html>
