@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 20 - Cadastro com Limite</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 40px; background-color: #f7f9fa; }
+        .controles { margin-bottom: 20px; }
+        button { padding: 10px 20px; font-size: 15px; cursor: pointer; margin: 5px; border-radius: 5px; border: 1px solid #ccc; }
+        .btn-ativar { background-color: #2ecc71; color: white; border: none; }
+        .btn-desativar { background-color: #e74c3c; color: white; border: none; }
+        .btn-cadastrar { background-color: #3498db; color: white; border: none; }
+        .btn-cadastrar:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+        input { padding: 10px; font-size: 15px; width: 250px; border-radius: 5px; border: 1px solid #ccc; }
+        #listaNomes { list-style-type: none; padding: 0; max-width: 300px; margin: 20px auto; text-align: left; }
+        #listaNomes li { padding: 8px; background: white; margin-bottom: 5px; border-radius: 3px; border-left: 5px solid #3498db; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        #mensagem { font-size: 18px; font-weight: bold; color: #e67e22; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <h2>Sistema de Cadastro de Nomes</h2>
+    
+    
+    <div class="controles">
+        <button class="btn-ativar" onclick="ativarCadastro()">Ativar Cadastro</button>
+        <button class="btn-desativar" onclick="desativarCadastro()">Desativar Cadastro</button>
+    </div>
+
+   
+    <div>
+        <input type="text" id="inputNome" placeholder="Digite um nome..." disabled>
+        <button id="btnCadastrar" class="btn-cadastrar" disabled>Cadastrar Nome</button>
+    </div>
+
+   
+    <div id="mensagem">Clique em "Ativar Cadastro" para começar.</div>
+    <ul id="listaNomes"></ul>
+
+    <script>
+       
+        let listaDeNomes = [];
+
+       
+        const inputNome = document.getElementById("inputNome");
+        const btnCadastrar = document.getElementById("btnCadastrar");
+        const msgElemento = document.getElementById("mensagem");
+        const listaUI = document.getElementById("listaNomes");
+
+       
+        function cadastrar() {
+            const nome = inputNome.value.trim();
+
+            if (nome === "") {
+                alert("Por favor, digite um nome válido.");
+                return;
+            }
+
+            
+            listaDeNomes.push(nome);
+            inputNome.value = ""; 
+
+            
+            listaUI.innerHTML = "";
+            for (let i = 0; i < listaDeNomes.length; i++) {
+                const li = document.createElement("li");
+                li.textContent = `${i + 1}. ${listaDeNomes[i]}`;
+                listaUI.appendChild(li);
+            }
+
+           
+            if (listaDeNomes.length < 5) {
+                msgElemento.textContent = `Cadastrado com sucesso! (${listaDeNomes.length}/5)`;
+            } else {
+                
+                msgElemento.textContent = "Limite de cadastros atingido.";
+                removerEvento();
+            }
+        }
+
+      
+        function ativarCadastro() {
+            if (listaDeNomes.length >= 5) {
+                msgElemento.textContent = "Limite de cadastros atingido.";
+                return;
+            }
+            btnCadastrar.addEventListener("click", cadastrar);
+            btnCadastrar.disabled = false;
+            inputNome.disabled = false;
+            msgElemento.textContent = "Cadastro ativo. Pode digitar.";
+        }
+
+        function desativarCadastro() {
+            removerEvento();
+            if (listaDeNomes.length < 5) {
+                msgElemento.textContent = "Cadastro desativado pelo usuário.";
+            }
+        }
+
+        function removerEvento() {
+            btnCadastrar.removeEventListener("click", cadastrar);
+            btnCadastrar.disabled = true;
+            inputNome.disabled = true;
+        }
+    </script>
+
+</body>
+</html>
