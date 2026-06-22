@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 15 - Mostrar Hora</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        button { padding: 10px 20px; font-size: 16px; margin: 5px; cursor: pointer; }
+        .active { background-color: #4CAF50; color: white; border: none; }
+        .deactive { background-color: #f44336; color: white; border: none; }
+        #horaDisplay { font-size: 24px; font-weight: bold; margin-top: 20px; color: #333; }
+    </style>
+</head>
+<body>
+
+    <h2>Mostrar Hora Atual</h2>
+    
+    <!-- Botões de controle -->
+    <button id="btnAtivar" class="active" onclick="ativarHora()">Ativar Hora</button>
+    <button id="btnDesativar" class="deactive" onclick="desativarHora()">Desativar Hora</button>
+
+    <!-- Botão de ação principal -->
+    <br><br>
+    <button onclick="exibirHora()">Clique Aqui para Ver a Hora</button>
+
+    <!-- Área de exibição -->
+    <div id="horaDisplay">---</div>
+
+    <script>
+        // Variável de estado (começa desativada)
+        let horaAtiva = false;
+
+        function ativarHora() {
+            horaAtiva = true;
+            alert("Exibição de hora ativada!");
+        }
+
+        function desativarHora() {
+            horaAtiva = false;
+            document.getElementById("horaDisplay").textContent = "---";
+            alert("Exibição de hora desativada.");
+        }
+
+        function exibirHora() {
+            // Verifica se a funcionalidade está ativa
+            if (horaAtiva) {
+                const agora = new Date();
+                const horaString = agora.toLocaleTimeString('pt-BR');
+                document.getElementById("horaDisplay").textContent = `Hora atual: ${horaString}`;
+            } else {
+                alert("A função de mostrar a hora está desativada no momento.");
+            }
+        }
+    </script>
+
+</body>
+</html>
