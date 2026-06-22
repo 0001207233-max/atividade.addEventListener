@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Atividade 12 - Lista de Cliques</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+        .controles {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #btn-principal {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            display: block;
+            margin: 20px auto;
+        }
+        ul {
+            list-style-type: decimal;
+            max-width: 200px;
+            margin: 20px auto;
+            text-align: left;
+        }
+        .status {
+            font-weight: bold;
+            color: #d9534f;
+        }
+        .status.ativo {
+            color: #5cb85c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controles">
+        <button id="btn-ativar">Ativar Registro</button>
+        <button id="btn-desativar">Desativar Registro</button>
+    </div>
+
+    <p>Status do Registro: <span id="status" class="status">Desativado</span></p>
+
+    <!-- Botão que gera os cliques -->
+    <button id="btn-principal">Botão Principal (Clique Aqui)</button>
+
+    <!-- Lista onde os cliques serão adicionados -->
+    <ul id="lista-cliques"></ul>
+
+    <script>
+        const btnAtivar = document.getElementById('btn-ativar');
+        const btnDesativar = document.getElementById('btn-desativar');
+        const btnPrincipal = document.getElementById('btn-principal');
+        const listaCliques = document.getElementById('lista-cliques');
+        const statusTexto = document.getElementById('status');
+
+        // Função que adiciona o elemento "Clique" na lista
+        function registrarClique() {
+            const novoItem = document.createElement('li');
+            novoItem.textContent = 'Clique';
+            listaCliques.appendChild(novoItem);
+        }
+
+        // Ativa o evento no botão principal
+        btnAtivar.addEventListener('click', () => {
+            btnPrincipal.addEventListener('click', registrarClique);
+            statusTexto.textContent = 'Ativado';
+            statusTexto.className = 'status ativo';
+        });
+
+        // Remove o evento do botão principal
+        btnDesativar.addEventListener('click', () => {
+            btnPrincipal.removeEventListener('click', registrarClique);
+            statusTexto.textContent = 'Desativado';
+            statusTexto.className = 'status';
+        });
+    </script>
+
+</body>
+</html>
+
