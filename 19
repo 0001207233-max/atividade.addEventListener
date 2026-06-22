@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 18 - Sistema de Vidas</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f9f9f9; }
+        button { padding: 15px 30px; font-size: 18px; cursor: pointer; border-radius: 8px; border: none; background-color: #f44336; color: white; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        button:disabled { background-color: #cccccc; cursor: not-allowed; box-shadow: none; }
+        #vidasDisplay { font-size: 36px; font-weight: bold; margin: 20px 0; color: #e91e63; }
+        #mensagem { font-size: 26px; font-weight: bold; color: #d32f2f; min-height: 40px; }
+    </style>
+</head>
+<body>
+
+    <h2>Sistema de Vidas</h2>
+    
+    
+    <div id="vidasDisplay">Vidas: ❤️ ❤️ ❤️ ❤️ ❤️ (5)</div>
+
+    
+    <button id="btnDano">Receber Dano</button>
+
+   
+
+    <script>
+       
+        let vidas = 5;
+
+      
+        const btnDano = document.getElementById("btnDano");
+        const displayVidas = document.getElementById("vidasDisplay");
+        const msgElemento = document.getElementById("mensagem");
+
+        
+        function perderVida() {
+           
+            vidas--;
+            
+           
+            displayVidas.textContent = "Vidas: " + "❤️ ".repeat(vidas) + `(${vidas})`;
+
+           
+            if (vidas > 0) {
+               
+                console.log("Vidas restantes: " + vidas);
+            } else {
+               
+                displayVidas.textContent = "Vidas: 💀 (0)";
+                msgElemento.textContent = "Game Over";
+                
+               
+                btnDano.removeEventListener("click", perderVida);
+                btnDano.disabled = true;
+            }
+        }
+
+      
+        btnDano.addEventListener("click", perderVida);
+    </script>
+
+</body>
+</html>
