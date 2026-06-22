@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 19 - Contagem Regressiva</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f4f7f6; }
+        button { padding: 15px 30px; font-size: 18px; cursor: pointer; border-radius: 8px; border: none; background-color: #008CBA; color: white; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        button:disabled { background-color: #cccccc; cursor: not-allowed; box-shadow: none; }
+        #contadorDisplay { font-size: 60px; font-weight: bold; margin: 20px 0; color: #333; }
+        #mensagem { font-size: 28px; font-weight: bold; color: #e74c3c; min-height: 40px; }
+    </style>
+</head>
+<body>
+
+    <h2>Contagem Regressiva</h2>
+    
+    
+    <div id="contadorDisplay">20</div>
+
+    
+    <button id="btnReduzir">Reduzir</button>
+
+    
+    <div id="mensagem"></div>
+
+    <script>
+        
+        let contagem = 20;
+
+       
+        const btnReduzir = document.getElementById("btnReduzir");
+        const displayContador = document.getElementById("contadorDisplay");
+        const msgElemento = document.getElementById("mensagem");
+
+        
+        function regressar() {
+           
+            contagem--;
+            
+            
+            displayContador.textContent = contagem;
+
+            
+            if (contagem > 0) {
+                
+                console.log("Contagem atual: " + contagem);
+            } else {
+                
+                msgElemento.textContent = "Fim da Contagem";
+                
+               
+                btnReduzir.removeEventListener("click", regressar);
+                btnReduzir.disabled = true; 
+            }
+        }
+
+       
+        btnReduzir.addEventListener("click", regressar);
+    </script>
+
+</body>
+</html>
