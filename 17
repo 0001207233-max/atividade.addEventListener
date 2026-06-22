@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 16 - Limite de Cliques</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        button { padding: 12px 24px; font-size: 16px; cursor: pointer; border-radius: 5px; border: 1px solid #ccc; }
+        #contadorDisplay { font-size: 28px; font-weight: bold; margin: 20px 0; color: #007BFF; }
+        #mensagem { font-size: 20px; color: #DC3545; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>Contador de Cliques com Limite</h2>
+    
+    <!-- Botão que receberá o evento -->
+    <button id="btnContar">Clique Aqui</button>
+
+    <!-- Exibição dos resultados -->
+    <div id="contadorDisplay">0</div>
+    <div id="mensagem"></div>
+
+    <script>
+        // Inicialização do contador
+        let contador = 0;
+
+        // Seleção dos elementos do DOM
+        const botao = document.getElementById("btnContar");
+        const display = document.getElementById("contadorDisplay");
+        const msgElemento = document.getElementById("mensagem");
+
+        // Função que processa o clique
+        function incrementarContador() {
+            contador++;
+            display.textContent = contador;
+
+            // Estrutura condicional if/else para validação do limite
+            if (contador < 10) {
+                // Continua contando (comportamento padrão)
+                console.log("Abaixo do limite: " + contador);
+            } else {
+                // Atingiu 10 cliques: exibe mensagem e remove o evento
+                msgElemento.textContent = "Limite atingido.";
+                botao.removeEventListener("click", incrementarContador);
+                botao.disabled = true; // Opcional: desativa visualmente o botão
+            }
+        }
+
+        // Ativação do evento de clique ao carregar a página
+        botao.addEventListener("click", incrementarContador);
+    </script>
+
+</body>
+</html>
