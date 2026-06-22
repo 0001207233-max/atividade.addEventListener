@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Atividade 13 - Caixa de Texto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+        .controles {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            margin: 15px 0;
+        }
+        .espelho-container {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            display: inline-block;
+            min-width: 300px;
+            background-color: #f9f9f9;
+        }
+        #visualizacao {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            word-wrap: break-word;
+        }
+        .status {
+            font-weight: bold;
+            color: #d9534f;
+        }
+        .status.ativo {
+            color: #5cb85c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controles">
+        <button id="btn-ativar">Ativar Monitoramento</button>
+        <button id="btn-remover">Remover Monitoramento</button>
+    </div>
+
+    <p>Monitor de Teclas: <span id="status" class="status">Desativado</span></p>
+
+    <!-- Campo de Entrada -->
+    <input type="text" id="caixa-texto" placeholder="Digite algo aqui..." autocomplete="off">
+
+    <!-- Área de Visualização -->
+    <div class="espelho-container">
+        <p>Visualização em tempo real:</p>
+        <span id="visualizacao"></span>
+    </div>
+
+    <script>
+        const btnAtivar = document.getElementById('btn-ativar');
+        const btnRemover = document.getElementById('btn-remover');
+        const caixaTexto = document.getElementById('caixa-texto');
+        const visualizacao = document.getElementById('visualizacao');
+        const statusTexto = document.getElementById('status');
+
+        // Função nomeada para atualizar a área de texto
+        function atualizarEspelho() {
+            visualizacao.textContent = caixaTexto.value;
+        }
+
+        // Ativa o evento de digitação
+        btnAtivar.addEventListener('click', () => {
+            caixaTexto.addEventListener('input', atualizarEspelho);
+            statusTexto.textContent = 'Ativado';
+            statusTexto.className = 'status ativo';
+        });
+
+        // Remove o evento de digitação
+        btnRemover.addEventListener('click', () => {
+            caixaTexto.removeEventListener('input', atualizarEspelho);
+            statusTexto.textContent = 'Desativado';
+            statusTexto.className = 'status';
+        });
+    </script>
+
+</body>
+</html>
