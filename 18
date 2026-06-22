@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 17 - Números Pares</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        button { padding: 12px 24px; font-size: 16px; margin: 10px; cursor: pointer; border-radius: 5px; }
+        .btn-gerar { background-color: #2196F3; color: white; border: none; }
+        .btn-desativar { background-color: #f44336; color: white; border: none; }
+        #numeroDisplay { font-size: 48px; font-weight: bold; margin: 20px 0; color: #333; }
+        #statusMensagem { font-size: 22px; font-weight: bold; }
+        .par { color: #4CAF50; }
+        .impar { color: #FF9800; }
+    </style>
+</head>
+<body>
+
+    <h2>Filtro de Números Pares (1 a 20)</h2>
+    
+  
+    <button id="btnGerar" class="btn-gerar">Gerar Número</button>
+    <button id="btnDesativar" class="btn-desativar">Desativar Evento</button>
+
+   
+    <div id="numeroDisplay">--</div>
+    <div id="statusMensagem"></div>
+
+    <script>
+       
+        const btnGerar = document.getElementById("btnGerar");
+        const btnDesativar = document.getElementById("btnDesativar");
+        const numDisplay = document.getElementById("numeroDisplay");
+        const statusMsg = document.getElementById("statusMensagem");
+
+       
+        function processarNumero() {
+          
+            const numeroAleatorio = Math.floor(Math.random() * 20) + 1;
+            
+           
+            numDisplay.textContent = numeroAleatorio;
+
+           
+                statusMsg.textContent = "Número Aceito";
+                statusMsg.className = "par";
+                statusMsg.textContent = "Número Ignorado";
+                statusMsg.className = "impar"; 
+        }
+
+       
+        function desativarEvento() {
+            btnGerar.removeEventListener("click", processarNumero);
+            btnGerar.disabled = true;
+            statusMsg.className = ""; 
+            alert("O gerador de números foi desativado.");
+        }
+
+       
+        btnGerar.addEventListener("click", processarNumero);
+        btnDesativar.addEventListener("click", desativarEvento);
+    </script>
+
+</body>
+</html>
