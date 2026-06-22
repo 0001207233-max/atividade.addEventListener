@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Atividade 11 - Mudar Cor do Título</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+        h1 {
+            color: black;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Elemento do Título -->
+    <h1 id="titulo">Clique aqui para mudar minha cor!</h1>
+
+    <!-- Botões de Controle -->
+    <button id="btn-ativar">Ativar Evento</button>
+    <button id="btn-remover">Remover Evento</button>
+
+    <script>
+       
+        const titulo = document.getElementById('titulo');
+        const btnAtivar = document.getElementById('btn-ativar');
+        const btnRemover = document.getElementById('btn-remover');
+
+       
+        function alterarCor() {
+          
+            const corAleatoria = '#' + Math.floor(Math.random()*16777215).toString(16);
+            titulo.style.color = corAleatoria;
+        }
+
+       
+        btnAtivar.addEventListener('click', () => {
+            titulo.addEventListener('click', alterarCor);
+            btnAtivar.style.backgroundColor = '#90ee90'; 
+            btnRemover.style.backgroundColor = '';
+        });
+
+      
+        btnRemover.addEventListener('click', () => {
+            titulo.removeEventListener('click', alterarCor);
+            btnRemover.style.backgroundColor = '#ffcccb'; 
+            btnAtivar.style.backgroundColor = '';
+        });
+    </script>
+
+</body>
+</html>
